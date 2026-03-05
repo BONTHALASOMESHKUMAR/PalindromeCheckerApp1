@@ -4,14 +4,7 @@ import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
-
     public static void main(String[] args) {
-
-
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version: 7.0");
-        System.out.println("System initialized successfully.");
-
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Input : ");
@@ -21,9 +14,19 @@ public class PalindromeCheckerApp {
         PalindromeStrategy strategy = new StackStrategy();
 
 
+        long startTime = System.nanoTime();
+
+
         boolean isPalindrome = strategy.check(input);
 
+
+        long endTime = System.nanoTime();
+
+        long executionTime = endTime - startTime;
+
+
         System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Execution Time : " + executionTime + " ns");
 
         scanner.close();
     }
@@ -37,11 +40,9 @@ interface PalindromeStrategy {
 
 class StackStrategy implements PalindromeStrategy {
 
-
     @Override
     public boolean check(String input) {
-
-        Stack<Character> stack = new Stack<>();
+        java.util.Stack<Character> stack = new java.util.Stack<>();
 
 
         for (char c : input.toCharArray()) {
@@ -54,7 +55,6 @@ class StackStrategy implements PalindromeStrategy {
                 return false;
             }
         }
-
         return true;
     }
 }
