@@ -5,43 +5,39 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version: 6.0");
+        System.out.println("Version: 7.0");
         System.out.println("System initialized successfully.");
 
-        Scanner a = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a name: ");
-        String original = a.nextLine();
+        String input = scanner.nextLine();
 
-        // Create Queue (FIFO)
-        Queue<Character> queue = new LinkedList<>();
+        // Create Deque (Double Ended Queue)
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Create Stack (LIFO)
-        Stack<Character> stack = new Stack<>();
-
-        // Insert characters into both Queue and Stack
-        for (char c : original.toCharArray()) {
-            queue.add(c);     // Enqueue
-            stack.push(c);    // Push
+        // Insert characters into deque
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);   // Add to rear
         }
 
         boolean isPalindrome = true;
 
-        // Compare characters using Queue and Stack
-        while (!queue.isEmpty()) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
 
-            char fromQueue = queue.remove();  // Dequeue (FIFO)
-            char fromStack = stack.pop();     // Pop (LIFO)
+            char front = deque.removeFirst();  // Remove from front
+            char rear = deque.removeLast();    // Remove from rear
 
-            if (fromQueue != fromStack) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
         }
 
         // Display result
-        System.out.println("Input: " + original);
+        System.out.println("Input: " + input);
         System.out.println("Is Palindrome?: " + isPalindrome);
 
-        a.close();
+        scanner.close();
     }
 }
