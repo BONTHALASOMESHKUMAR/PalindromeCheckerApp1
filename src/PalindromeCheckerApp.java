@@ -1,31 +1,42 @@
-import java.util.*;
-public class PalindromeCheckerApp {
+import java.util.Scanner;
+public class  PalindromeCheckerApp {
+
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version: 3.0");
-        System.out.println("System initialized successfully.");
+        System.out.println("Version: 4.0 - UC4 (Character Array Based Check)");
+        System.out.println("System initialized successfully.\n");
 
-        Scanner a = new Scanner(System.in);
-        System.out.print("Enter a name: ");
-        String original = a.nextLine();
+        Scanner scanner = new Scanner(System.in);
 
-
-        String reversed = "";
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
 
-        for (int i = original.length() - 1; i >= 0; i--) {
+        char[] characters = input.toCharArray();
 
-            reversed += original.charAt(i);
+
+        int start = 0;
+        int end = characters.length - 1;
+
+        boolean isPalindrome = true;
+
+        while (start < end) {
+
+            if (characters[start] != characters[end]) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
         }
 
 
-        boolean isPalindrome = original.equals(reversed);
+        System.out.println("\nInput: " + input);
+        System.out.println("Is it a Palindrome? : " + isPalindrome);
 
-
-        System.out.println("Original: " + original);
-        System.out.println("Reversed: " + reversed);
-        System.out.println("Is it a Palindrome?: " + isPalindrome);
-        a.close();
+        scanner.close();
     }
 }
