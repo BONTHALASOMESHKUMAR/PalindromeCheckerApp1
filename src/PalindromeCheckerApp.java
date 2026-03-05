@@ -1,32 +1,31 @@
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version: 7.0");
-        System.out.println("System initialized successfully.");
-
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a name: ");
+
+
+        System.out.print("Input : ");
         String input = scanner.nextLine();
 
-        // Create Deque (Double Ended Queue)
-        Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert characters into deque
+        LinkedList<Character> list = new LinkedList<>();
+
+
         for (char c : input.toCharArray()) {
-            deque.addLast(c);   // Add to rear
+            list.add(c);
         }
+
 
         boolean isPalindrome = true;
 
-        // Compare front and rear characters
-        while (deque.size() > 1) {
 
-            char front = deque.removeFirst();  // Remove from front
-            char rear = deque.removeLast();    // Remove from rear
+        while (list.size() > 1) {
+            char front = list.removeFirst();
+            char rear = list.removeLast();
 
             if (front != rear) {
                 isPalindrome = false;
@@ -34,9 +33,8 @@ public class PalindromeCheckerApp {
             }
         }
 
-        // Display result
-        System.out.println("Input: " + input);
-        System.out.println("Is Palindrome?: " + isPalindrome);
+
+        System.out.println("Is Palindrome? : " + isPalindrome);
 
         scanner.close();
     }
