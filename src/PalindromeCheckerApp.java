@@ -1,42 +1,42 @@
-import java.util.Scanner;
-public class  PalindromeCheckerApp {
+import java.util.*;
 
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version: 4.0 - UC4 (Character Array Based Check)");
-        System.out.println("System initialized successfully.\n");
+        System.out.println("Version: 5.0");
+        System.out.println("System initialized successfully.");
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner a = new Scanner(System.in);
+        System.out.print("Enter a name: ");
+        String original = a.nextLine();
 
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
+        // Create a Stack to store characters
+        Stack<Character> stack = new Stack<>();
 
-
-        char[] characters = input.toCharArray();
-
-
-        int start = 0;
-        int end = characters.length - 1;
+        // Push each character of the string into the stack
+        for (char c : original.toCharArray()) {
+            stack.push(c);
+        }
 
         boolean isPalindrome = true;
 
-        while (start < end) {
+        // Pop characters and compare with original string
+        for (char c : original.toCharArray()) {
 
-            if (characters[start] != characters[end]) {
+            char poppedChar = stack.pop();
+
+            if (c != poppedChar) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
+        // Display result
+        System.out.println("Input: " + original);
+        System.out.println("Is Palindrome?: " + isPalindrome);
 
-        System.out.println("\nInput: " + input);
-        System.out.println("Is it a Palindrome? : " + isPalindrome);
-
-        scanner.close();
+        a.close();
     }
 }
